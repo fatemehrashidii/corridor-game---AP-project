@@ -1,5 +1,7 @@
 #include <iostream>
+#include <string>
 #include <httplib.h>
+#include "headers.h"
 
 using namespace std;
 
@@ -11,8 +13,20 @@ int main() {
     cout << "Enter number of players: ";
     cin >> number_of_players;
 
-    srv.Get("/start", [](const auto &, auto &res) {
+
+    srv.Get("/start", [&](const auto &, auto &res) {
     res.set_content("Enter number of players: ", "text/plain");
+    
+    srv.Post("/pl", [&](const httplib::Request &req, httplib::Response &res) {   
+        cout << req.body << "\n";
+        res.set_content("hi!", "text/plain");
+
+
+        
+        });
+
+
+
     });
 
     std::cout << "start server..." << std::endl;

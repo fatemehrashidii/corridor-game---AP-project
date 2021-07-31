@@ -7,14 +7,22 @@ int main() {
     using namespace httplib;
     Client cli("127.0.0.1", 8000);
 
-    auto res = cli.Get("/start");
+    if (auto res = cli.Get("/start")) {
+        if (res->status == 200) {
+            while (true) {
+    string temp;
+    cin >> temp;
+        auto res = cli.Post("/p1", temp, "text/plain");
 
-    if (res) {
-        cout << res -> status << endl;
-        cout << res -> body << endl;
+    
+        //cout << res->status << std::endl;
+        cout << res->body << std::endl;
+            }
     }
-    else {
-        cout << "error: " << to_string(res.error()) << endl;   
     }
+
+    
+
+    
 
 }
