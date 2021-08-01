@@ -32,11 +32,11 @@ public:
         int players;
 };
 
-
+// constructor
 corridor :: corridor(int n) {
     players = n;
 }
-
+// distructor
 corridor :: ~corridor(){
     //
 }
