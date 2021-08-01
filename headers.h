@@ -91,12 +91,12 @@ void corridor :: print_board() {
 // function to check if a move is valid or not
 bool corridor :: valid_place(int i, int j)
 {
-    // board[i] : start | board[j] : destination
+    // board[i] : current place | board[j] : nect place
     // if board[i] == "     " ---> there is nothing to move!
     // if board[j] != "     " ---> the place is blocked.
     if (board[i] == "     " || board[j] != "     ")
         return false;
-    // moving forward
+    // moving forward(right)
     if (j == i + 1)
     {
         // check if it goes to the next line or not
@@ -109,8 +109,8 @@ bool corridor :: valid_place(int i, int j)
             return true;
         }
     }
-    // moving backward
-    else if (j == i -1)
+    // moving backward(left)
+    else if (j == i - 1)
     {
         // check if it goes to the privios line or not
         if (i % 11 == 0)
@@ -133,7 +133,7 @@ bool corridor :: valid_place(int i, int j)
 bool corridor :: valid_wall(int i, int j)
 {
     // rules: target blocks and the center block couldn't be full
-    if (board[i] != "     " || board[j] != "     " || i == 60 || j == 60)
+    if (board[i] != "     " || board[j] != "     " || i == 60 || j == 60 || j % 11 == 0)
         return false;
     // if chosen blockes are next to each other, we can put walls
     if (j == i+1 || j == i-1 || j == i+11 || j == i-11)

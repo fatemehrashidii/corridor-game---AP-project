@@ -1,33 +1,23 @@
 #include <iostream>
 #include <string>
-#include <httplib.h>
+#include "httplib.h"
 #include "headers.h"
 
-using namespace std;
 
 int main() {
-    using namespace httplib;
-    Server srv;
 
-    int number_of_players;
-    cout << "Enter number of players: ";
-    cin >> number_of_players;
+    httplib :: Server srv;
 
-
-    srv.Get("/start", [&](const auto &, auto &res) {
-    res.set_content("Enter number of players: ", "text/plain");
+    srv.Post("/Start", [&](const auto & req, auto &res) {
+    res.set_content("client is connectd.", "text/plain");
+    const auto& file = req.get_file_value("Start");
+    string pl1 = file.filename;
+	string pl2 = file.content_type;
+    cout << pl1 << "\n" << pl2 << "\n";
     
-    srv.Post("/pl", [&](const httplib::Request &req, httplib::Response &res) {   
-        cout << req.body << "\n";
-        res.set_content("hi!", "text/plain");
-
-
-        
-        });
-
-
-
     });
+
+
 
     std::cout << "start server..." << std::endl;
     srv.listen("127.0.0.1", 8000);
