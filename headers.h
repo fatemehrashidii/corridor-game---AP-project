@@ -40,7 +40,7 @@ corridor :: corridor(int n) {
 corridor :: ~corridor(){
     //
 }
-
+// function to set the board game
 void corridor :: set_board(int num) {
     // 2 players :
     if (num == 2) {
@@ -61,8 +61,8 @@ void corridor :: set_board(int num) {
         board[110] = "**C**";
         board[120] = "**D**";
     }
-}
-
+} // end set_board()
+// function to print the board
 void corridor :: print_board() {
     for (int i = 0 ; i < 66 ; i++)
         std :: cout << "-";
@@ -87,7 +87,7 @@ void corridor :: print_board() {
         }
         std :: cout << std :: endl;
     }
-}
+} // end print_board()
 // function to check if a move is valid or not
 bool corridor :: valid_place(int i, int j)
 {
@@ -128,7 +128,7 @@ bool corridor :: valid_place(int i, int j)
     // anywhere else
     else 
         return false;
-}
+} // end valid_place()
 // function to check if it's valid to put the wall or not
 bool corridor :: valid_wall(int i, int j)
 {
@@ -140,4 +140,4 @@ bool corridor :: valid_wall(int i, int j)
         return true;
     else 
         return false;
-}
+} // endvalid_wall

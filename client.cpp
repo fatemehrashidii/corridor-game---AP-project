@@ -21,7 +21,7 @@ int main() {
     game.set_board(number_of_players);
     game.print_board();
 
-    
+    // this loop continues untill a player wins
     while (game.board[60] == "     ") {
         cout << "press (W) to put walls or (M) to move on." << endl;
         char choice;
@@ -42,9 +42,8 @@ int main() {
 			form[0].content_type = nxt_place;
             auto res = cli.Post("/Start", form);
             
-
-
             int curr = stoi(curr_place); int nxt = stoi(nxt_place);
+
             if (game.valid_place(curr, nxt)) {
 
                     cout<<endl;
@@ -54,6 +53,13 @@ int main() {
                     game.board[nxt] = tmp;
                     system("cls");
                     game.print_board();
+                    // TA's question: print the distance from the center block in each level
+                    /*int a, b, dis;
+                    a = (nxt % 11) - 5;
+                    b = (nxt / 11) - 5;
+                        ...
+                    dis = sqrt(a*a + b*b);
+                    cout << "distance(type: int, not float) : " << dis << endl;*/
 
                 } // end if
                 else
@@ -87,7 +93,7 @@ int main() {
             }
         } // end if
     }
-
+    // show the winner
     if (game.board[60] != "     ")
     {
         cout << game.board[60].substr(2, 1) << " is the winner!" << endl;
@@ -100,7 +106,6 @@ int main() {
                 cin >> temp;
                 auto res = cli.Post("/p1", temp, "text/plain");
 
-    
                 //cout << res->status << std::endl;
                 cout << res->body << std::endl;
             }
