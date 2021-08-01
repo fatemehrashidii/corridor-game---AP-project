@@ -88,6 +88,11 @@ int main() {
         } // end if
     }
 
+    if (game.board[60] != "     ")
+    {
+        cout << game.board[60].substr(2, 1) << " is the winner!" << endl;
+    }
+
     if (auto res = cli.Get("/Start")) {
         if (res->status == 200) {
             while (true){
